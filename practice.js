@@ -30,8 +30,10 @@ console.log(sum);
 //for循环输出乘法口诀表
 for (var i = 1; i <= 9; i++) {
   for (var j = 1; j <= i; j++) {
-    document.write("i'*'j=i*j");
+    document.write(i+"*"+j+"="+i*j);
+    document.write("&nbsp");
   }
+  document.write("</br>");
 }
 
 //斐波那契 想知道一年之内一对兔子能繁殖多少对兔子。已知一对兔子一个月可以生一对小兔子，
@@ -130,3 +132,5 @@ for (var i = 0; i < array.length; i++) {
   }
 }
 console.log(array);
+
+//
