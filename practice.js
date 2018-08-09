@@ -30,7 +30,7 @@ console.log(sum);
 //for循环输出乘法口诀表
 for (var i = 1; i <= 9; i++) {
   for (var j = 1; j <= i; j++) {
-    document.write(i+"*"+j+"="+i*j);
+    document.write(i + "*" + j + "=" + i * j);
     document.write("&nbsp");
   }
   document.write("</br>");
@@ -132,5 +132,3 @@ for (var i = 0; i < array.length; i++) {
   }
 }
 console.log(array);
-
-//
