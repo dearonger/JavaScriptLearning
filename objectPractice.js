@@ -59,3 +59,19 @@ for (var key in obj) {
   console.log(key + " :  " + obj[key]); //❗️key中存储的是obj对象中属性或方法的名字，是字符串
   console.log(obj[key]); //❗️此方法输出的是对象中属性的值或方法代码
 }
+
+//对象存储占用两个空间，在堆中存储定义代码，在栈中存储堆中代码的地址
+function Person(name, age, salary) {
+  this.name = name;
+  this.age = age;
+  this.salary = salary;
+}
+function f1(person) {
+  //该语句将修改实参的内容
+  person.name = "ls";
+  //该语句将 person 中存储的地址改变了，但是不会改变实参的内容
+  person = new Person("aa", 18, 1000);
+}
+var p = new Person("za", 18, 10);
+f1(p);
+console.log(p.name); //输出ls
