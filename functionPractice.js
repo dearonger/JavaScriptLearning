@@ -12,7 +12,7 @@ console.log(sumDivision7(100, 200));
 
 //判断一个数是否是质数（只能被1和自身整除）
 function primeNumber(m) {
-  for (var i = 2; i < m/2; i++) {
+  for (var i = 2; i < m / 2; i++) {
     if (m % i != 0) {
       continue;
     } else {
@@ -28,12 +28,12 @@ primeNumber(number);
 //方法2
 // 在函数前输入 /** + Enter 可以写函数注释，在别处调用函数时，cmd+鼠标左键点击函数名，可以找到函数定义。
 /**
- * 
+ *
  * @param {*} num 参数是用来判断是否是质数的数，实现···功能
  *
  */
 function isPrimeNumber(num) {
-  for (var i = 2; i < num/2; i++) {
+  for (var i = 2; i < num / 2; i++) {
     if (num % i == 0) {
       //说明不是质数
       return false;
@@ -42,90 +42,90 @@ function isPrimeNumber(num) {
   return true;
 }
 var number = parseInt(prompt("请输入数字："));
-console.log(isPrimeNumber(number) ? number+"是质数" : number+"不是质数");
+console.log(isPrimeNumber(number) ? number + "是质数" : number + "不是质数");
 
 //求斐波那契数列
-function getFib(num){
-    var num1=1;
-    var num2=1;
-    var sum=0;
-    for(var i=3;i<=num;i++){
-        sum=num1+num2;
-        num1=num2;
-        num2=sum;
-    }
-    return sum;
+function getFib(num) {
+  var num1 = 1;
+  var num2 = 1;
+  var sum = 0;
+  for (var i = 3; i <= num; i++) {
+    sum = num1 + num2;
+    num1 = num2;
+    num2 = sum;
+  }
+  return sum;
 }
 getFib(2);
 
 //输入年月日，输出该日期是这一年的第几天
-function isLeapYear(year){
-    return year%4==0&&year%100!=0||year%400==0;
+function isLeapYear(year) {
+  return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
-function getDays(year,month,day){
-    var days=day;
-    //如果是一月，直接输出day的值
-    if(month==1){
-        return days;
-    }
-    //如果执行到这里说明不是一月
-    var months=[31,28,31,30,31,30,31,31,30,31,30,31];
-    for(var i=0;i<month-1;i++){
-        days+=months[i];
-    }
-    //判断年份是否是闰年
-    if(isLeapYear(year)&&month>2){
-        days++;
-    }
+function getDays(year, month, day) {
+  var days = day;
+  //如果是一月，直接输出day的值
+  if (month == 1) {
     return days;
+  }
+  //如果执行到这里说明不是一月
+  var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  for (var i = 0; i < month - 1; i++) {
+    days += months[i];
+  }
+  //判断年份是否是闰年
+  if (isLeapYear(year) && month > 2) {
+    days++;
+  }
+  return days;
 }
-getDays(2003,3,2);
+getDays(2003, 3, 2);
 
 //arguments的使用（伪数组）求若干个数字的累加和
-function f1(){
-    var sum=0;
-    for(var i=0;i<arguments.length;i++){
-        sum+=arguments[i];
-    }
-    return sum;
+function f1() {
+  var sum = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
 }
-console.log(f1(1,3,5));
+console.log(f1(1, 3, 5));
 
 //匿名函数的使用
-var fi=function (){
-    console.log("匿名函数");
-};//此处的分号不可省略
+var fi = function() {
+  console.log("匿名函数");
+}; //此处的分号不可省略
 f1();
 
 //预解析问题
 f1();
 //预解析，函数定义与变量声明会提前，变量赋值不会提前。先提升var，再提升function
 //变量提升只会在当前作用域中
-function f1(){
-    console.log("hello world!");
-    console.log(a);
-    var a=10;
+function f1() {
+  console.log("hello world!");
+  console.log(a);
+  var a = 10;
 }
-//输出结果会是 hello world! 
+//输出结果会是 hello world!
 //           undefined
 
 //调用f2时，输出num2的值为 undefined
-var num2=20;
-function f2(){
-    console.log(num2);
-    var num2=30;
+var num2 = 20;
+function f2() {
+  console.log(num2);
+  var num2 = 30;
 }
 
 //预解析问题 练习2
 f1();
-console.log(a);  //报错
-console.log(b);  //9
-console.log(c);  //9
-function f1(){
-    var a=b=c=9;
-    console.log(a);//9
-    console.log(b);//9
-    console.log(c);//9
+console.log(a); //报错
+console.log(b); //9
+console.log(c); //9
+function f1() {
+  var a = (b = c = 9);
+  console.log(a); //9
+  console.log(b); //9
+  console.log(c); //9
 }
 //var a=b=c=9相当于：
 //var a=9; b=9; c=9; 其中a有声明，而 b 与 c 则为隐式全局变量
