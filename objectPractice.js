@@ -54,13 +54,13 @@ obj.sayHi = function() {
     "hello,my name is " + this.Name + ", I'm " + this.Age + "years old."
   );
 };
-//k是一个变量，该变量中存储的是对象的属性名
+//key是一个变量，该变量中存储的是对象的属性名
 for (var key in obj) {
-  console.log(key + " :  " + obj[key]); //❗️key中存储的是obj对象中属性或方法的名字，是字符串
+  console.log(key + " :  " + obj[key]); //❗️key中存储的是obj对象中属性或方法的名字
   console.log(obj[key]); //❗️此方法输出的是对象中属性的值或方法代码
 }
 
-//对象存储占用两个空间，在堆中存储定义代码，在栈中存储堆中代码的地址
+//对象存储占用两个空间，在堆中存储定义代码，在栈中存储堆中代码的地址  引用类型值传递
 function Person(name, age, salary) {
   this.name = name;
   this.age = age;
@@ -74,4 +74,74 @@ function f1(person) {
 }
 var p = new Person("za", 18, 10);
 f1(p);
-console.log(p.name); //输出ls
+console.log(p.name); //❗️输出ls
+
+//随机产生一个十六进制的随机颜色
+function getColor() {
+  var str = "#";
+  var arr = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+  ];
+  for (var i = 0; i < 6; i++) {
+    //产生随机索引 str1
+    var str1 = parseInt(Math.random() * 16);
+    str += arr[str1];
+  }
+  return str;
+}
+console.log(getColor());
+// //页面加载事件
+// window.onload = function() {
+//   document.getElementsByClassName(
+//     "thumbnail angular-youtube-wrapper"
+//   ).style.backgroundColor = getColor();
+// };
+
+//Date对象的使用
+var date = new Date();
+date.getFullYear(); //年
+date.getMonth(); //月-----从0开始
+date.getDate(); //日
+date.getDay(); //星期-----从0开始
+date.getHours(); //小时
+date.getMinutes(); //分钟
+date.getSeconds(); //秒
+date.toLocaleDateString(); // 年/月/日 格式
+date.toDateString(); //美式时间
+date.toLocaleTimeString(); // 时：分：秒 上午/下午 格式
+date.toTimeString(); //时间
+date.valueOf(); //毫秒
+
+//格式化日期和时间
+function getTime(date) {
+  var month = dat.getMonth() + 1;
+  var day = dat.getDate();
+  month = month > 10 ? month : "0" + month;
+  day = day > 10 ? day : "0" + day;
+  return (
+    dat.getFullYear() +
+    "年" +
+    month +
+    "月" +
+    day +
+    "日" +
+    "   " +
+    dat.toLocaleTimeString()
+  );
+}
+console.log(getTime(new Date()));
