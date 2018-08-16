@@ -81,16 +81,14 @@ months.splice(4, 1);
 console.log(months);
 // output: Array ['Jan', 'Feb', 'March', 'April']
 
-//去掉数组中的所有重复元素  ❌
+//去掉数组中的所有重复元素
 var arr6 = [1, 2, 6, 4, 4, 6, 7, 8, 3, 5, 6, 3, 7, 9, 0, 10];
 //用来存放新数组
 var arr7 = [];
 //遍历arr6，元素出现过,跳过;否则,加入arr7中
 arr6.forEach(function(ele, index) {
-  if (arr6[index]) {
-    index++;
-  } else {
-    arr7[arr7.length] = ele;
+  if (arr7.indexOf(arr6[index]) == -1) {
+    arr7.push(arr6[index]);
   }
 });
 console.log(arr7);
