@@ -7,6 +7,7 @@
  * .fromCharCode(number1，number2,...numberN)  返回的是该ASCII对应的值
  * .concat(str1，str2，... strN)   返回的是多个字符串的拼接字符串
  * .indexOf(目标字符串[，搜索起始位置])  返回该字符串的索引值，没有则返回 -1
+ * .lastIndexOf(目标字符串[，搜索起始位置])  返回最后一个该字符串的索引值，没有则返回 -1
  * .replace(str1,newstr)  替换
  * .slice(beginSlice[,endSlice]) 提取字符串的一部分并返回新的字符串
  * .split(str[,number])  返回以 str 为分隔符切分的数组，切割后的数组元素个数
@@ -38,12 +39,24 @@ for (var i = 0; i < str.length; i++) {
   //判断字符串中是否有该字符以及次数
   var key = str[i];
   if (obj[key]) {
-    //若有计数加一
+    //若有，计数加一
     obj[key]++;
   } else {
-    obj[key] = 1; //若没有创建
+    obj[key] = 1; //若没有，创建
   }
 }
 for (var key in obj) {
   console.log(key + "在字符串中出现了" + obj[key] + "次");
 }
+
+//基本包装类型  基本类型调用了属性或者方法时，该基本类型就变成了基本包装类型，该变量就变为了基本包装类型对象
+//string，Boolean，number既是基本类型，又是基本包装类型
+var str = "hello";
+var newStr = str.replace("ll", "LL");
+console.log(newStr);
+
+var flag = new Boolean(false);
+//object&&true  --->  true
+//true&&object  --->  object
+var result = flag && true;
+console.log(result); //true
