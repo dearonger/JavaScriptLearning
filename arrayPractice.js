@@ -107,3 +107,28 @@ console.log(arr6);
 //方法二
 arr6.reverse();
 console.log(arr6);
+
+//模拟数组的sort方法排序
+var arr8 = [1, 2, 6, 4, 4, 6, 7, 8, 3, 5, 6, 3, 7, 9, 0, 10];
+//自定义构造函数
+function MyArray() {
+  //实例方法：通过实例对象调用的方法
+  this.mySort = function(arr) {
+    var tempt = arr[0];
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = 0; j < arr.length - 1 - i; j++) {
+        if (arr[j] > arr[j + 1]) {
+          tempt = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = tempt;
+        } //end if
+      } //end for
+    } //end for
+  };
+}
+var Arr = new MyArray();
+Arr.mySort(arr8);
+console.log(arr8);
+
+//清空数组
+arr8.length = 0;
