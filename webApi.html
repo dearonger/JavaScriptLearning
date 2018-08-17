@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Practice</title>
+</head>
+
+<body>
+    <input type="button" value="没点" />
+    <input type="button" value="没点" />
+    <input type="button" value="没点" />
+    <input type="button" value="没点" />
+    <input type="button" value="没点" />
+    <input type="button" value="没点" />
+    <div id="content">
+        <button id="iButton">change</button>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+    </div>
+    <p>hello</p>
+    <p>hello</p>
+    <script>
+        var btn = document.getElementsByTagName("input");
+        for (var i = 0; i < btn.length; i++) {
+            //遍历数组中的内容，给按钮注册点击事件
+            //for循环在加载的时候就执行了，而function中的代码在触发时才执行
+            btn[i].onclick = function () {
+                //先将value的值设置为默认值：没点
+                for (var j = 0; j < btn.length; j++) {
+                    //btn[j]可用this代替后，循环没有意义了
+                    btn[j].value = "没点"
+                    btn[j].style.backgroundColor = "red";
+                }
+                //修改点击后的按钮的值
+                this.value = "点了";
+                //❗️function中的代码在触发时才执行,此时，外层for循环已经执行完毕
+                //btn[i]==btn[btn.length](不存在)！=this
+                this.style.backgroundColor = "green";
+            };
+        }
+    </script>
+    <script>
+        var pButton = document.getElementById("iButton");
+        pButton.onclick = (function () {
+            var pContent = document.getElementById("content").getElementsByTagName("p");
+            for (var i = 0; i < pContent.length; i++) {
+                pContent[i].innerText = "hi";
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

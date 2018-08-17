@@ -82,16 +82,27 @@ console.log(months);
 // output: Array ['Jan', 'Feb', 'March', 'April']
 
 //去掉数组中的所有重复元素
+//方法一
 var arr6 = [1, 2, 6, 4, 4, 6, 7, 8, 3, 5, 6, 3, 7, 9, 0, 10];
 //用来存放新数组
 var arr7 = [];
-//遍历arr6，元素出现过,跳过;否则,加入arr7中
-arr6.forEach(function(ele, index) {
-  if (arr7.indexOf(arr6[index]) == -1) {
-    arr7.push(arr6[index]);
+//遍历arr6，元素在arr7中未出现,加入arr7中；否则,跳过
+arr6.forEach(function(ele) {
+  if (arr7.indexOf(ele) == -1) {
+    arr7.push(ele);
   }
 });
 console.log(arr7);
+//方法二 遍历arr6，如果数组当前元素在此数组中第一次出现的位置是index
+//      说明第一次出现，否则跳过
+var arr7 = [];
+arr6.forEach(function(ele, index) {
+  if (arr6.indexOf(ele) == index) {
+    arr7.push(ele);
+  }
+});
+console.log(arr7);
+//方法三 排序，若与相邻元素不等，push，否则，跳过（略）
 
 //将一个数组的元素逆置
 //方法一
