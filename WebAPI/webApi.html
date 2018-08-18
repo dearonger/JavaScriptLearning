@@ -7,26 +7,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Practice</title>
 </head>
+<script>
+    /*❗️获取元素的方法总结
+    *
+    * 根据id属性的值获取元素,返回来的是一个元素对象
+    * document.getElementById("id")
+    *
+    * 根据标签名字获取元素,返回来的是一个伪数组,里面保存了多个的DOM对象
+    * document.getElementsByTagName("tagName")
+    *
+    * 下面的几个,有的浏览器不支持
+    *
+    * 根据name属性的值获取元素,返回来的是一个伪数组,里面保存了多个的DOM对象
+    * document.getElementsByName("name")
+    * 
+    * 根据类样式的名字来获取元素,返回来的是一个伪数组,里面保存了多个的DOM对象
+    * document.getElementByClassName("className")
+    * 
+    * 根据选择器获取元素,返回来的是一个元素对象
+    * document.querySelector("选择器名字(#id)")
+    *
+    * 根据选择器获取元素,返回来的是一个伪数组,里面保存了多个的DOM对象
+    *document.querySelectorAll("name")
+    *
+    * html中自定义的属性通过this.是获取不到的，只能通过调用this.getAttribute("属性名"")的方式获取
+    *
+    * */
+</script>
 
-<body>
-    <input type="button" value="没点" />
-    <input type="button" value="没点" />
-    <input type="button" value="没点" />
-    <input type="button" value="没点" />
-    <input type="button" value="没点" />
-    <input type="button" value="没点" />
-    <div id="content">
-        <button id="iButton">change</button>
-        <p>hello</p>
-        <p>hello</p>
-        <p>hello</p>
-        <p>hello</p>
-        <p>hello</p>
+<body id="bdy">
+    <!-- ❗️排他功能实现 -->
+    <div id="btnArea">
+        <input type="button" value="没点" />
+        <input type="button" value="没点" />
+        <input type="button" value="没点" />
+        <input type="button" value="没点" />
+        <input type="button" value="没点" />
+        <input type="button" value="没点" />
+        </br></br></br>
     </div>
-    <p>hello</p>
-    <p>hello</p>
+
     <script>
-        var btn = document.getElementsByTagName("input");
+        var btn = document.getElementById("btnArea").getElementsByTagName("input");
         for (var i = 0; i < btn.length; i++) {
             //遍历数组中的内容，给按钮注册点击事件
             //for循环在加载的时候就执行了，而function中的代码在触发时才执行
@@ -45,15 +67,108 @@
             };
         }
     </script>
+    <div id="content">
+        <!-- ❗️修改特定标签内容 -->
+        <button id="iButton">change</button>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+    </div>
+    <p>hello</p>
+    <p>hello</p>
+    </br></br>
     <script>
         var pButton = document.getElementById("iButton");
-        pButton.onclick = (function () {
+        var count = 0;
+        pButton.onclick = function () {
             var pContent = document.getElementById("content").getElementsByTagName("p");
-            for (var i = 0; i < pContent.length; i++) {
-                pContent[i].innerText = "hi";
+
+            if (count % 2 == 0) {
+                for (var i = 0; i < pContent.length; i++) {
+                    pContent[i].innerText = "hi";
+                }
+            } else {
+                for (var i = 0; i < pContent.length; i++) {
+                    pContent[i].innerText = "hello";
+                }
             }
-        });
+            count++;
+        };
     </script>
+    <!-- ❗️单复选框 -->
+    <input type="button" value="选择性别" id="btn1" />选择性别
+    <input type="radio" value="1" name="sex" id="rad1" />男
+    <input type="radio" value="2" name="sex" />女
+    </br></br>
+    <input type="button" value="选择爱好" id="btn2">选择爱好
+    <input type="checkbox" value="1" name="hoppy" id="ck1" />看书
+    <input type="checkbox" value="2" name="hoppy" id="ck2" />绘画
+    <input type="checkbox" value="3" name="hoppy" />跑步
+    <input type="checkbox" value="4" name="hoppy" id="ck3" />弹琴
+    <input type="checkbox" value="5" name="hoppy" />唱歌
+    <input type="checkbox" value="6" name="hoppy" />跳舞
+    </br></br></br></br>
+    <script>
+        //规律：若属性值与属性名相同，如checked、disabled、readonly等，便可以用true代替属性值
+        function my$(id) {
+            return document.getElementById(id);
+        }
+        my$("btn1").onclick = function () {
+            my$("rad1").checked = true;
+        };
+        my$("btn2").onclick = function () {
+            my$("ck1").checked = true;
+            my$("ck2").checked = true;
+            my$("ck3").checked = true;
+        }
+    </script>
+    <!-- 网页开关灯 -->
+    <style>
+        .cls {
+            background-color: black;
+            color: #ccc;
+        }
+    </style>
+    <input type="button" id="btn3" value="灯" />
+    </br></br></br></br>
+    <script>
+        document.getElementById("btn3").onclick = function () {
+            document.body.className = document.body.className != "cls" ? "cls" : "";
+        }
+
+    </script>
+    <ul id="uu">
+        <li>助教的数学成绩</li>
+        <li>班主任的成绩</li>
+        <li>小苏的成绩</li>
+        <li>小杰老师成绩</li>
+        <li>乔峰成绩</li>
+    </ul>
+    <script src="../common.js"></script>
+    <script>
+        //总结:设置自定义属性:setAttribute("属性的名字","属性的值");
+        //获取自定义属性的值:getAttribute("属性的名字")
+
+        //获取所有的li标签,然后为每个标签中动态的添加自定义属性和值
+        //点击的时候获取该标签的自定义属性的值
+
+        //根据id获取ul标签,并且或者该标签中所有的li
+        var list = my$("uu").getElementsByTagName("li");
+        //循环遍历
+        for (var i = 0; i < list.length; i++) {
+            //先为每个li添加自定义属性
+            //list[i].score=(i+1)*10;//此方式,自定义属性在DOM对象上,不在标签中
+            list[i].setAttribute("score", (i + 1) * 10);
+            //点击每个li标签,显示对应的自定义属性值
+            list[i].onclick = function () {
+                alert(this.getAttribute("score"));
+            };
+        }
+    </script>
+
+
 </body>
 
 </html>
