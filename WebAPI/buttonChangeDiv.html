@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .hd {
+            height: 45px;
+        }
+
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hd span.current {
+            background-color: palevioletred;
+        }
+
+        .bd li {
+            height: 255px;
+            background-color: palevioletred;
+            display: none;
+        }
+
+        .bd li.current {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="hd">
+            <span class="current">体育</span>
+            <span>娱乐</span>
+            <span>新闻</span>
+            <span>综合</span>
+        </div>
+        <div class="bd">
+            <ul>
+                <li class="current">我是体育模块</li>
+                <li>我是娱乐模块</li>
+                <li>我是新闻模块</li>
+                <li>我是综合模块</li>
+            </ul>
+        </div>
+    </div>
+    <script src="../common.js"></script>
+    <script>
+        var box = my$("box");
+        var hd = box.getElementsByTagName("div")[0];
+        var bd = box.getElementsByTagName("div")[1];
+        var spans = hd.getElementsByTagName("span");
+        var lis = bd.getElementsByTagName("li");
+        for (var i = 0; i < spans.length; i++) {
+            //在点击按钮之前就把索引保存在span标签中
+            spans[i].setAttribute("index", i);
+            spans[i].onclick = function () {
+                //第一步，移除所有按钮样式
+                for (var j = 0; j < spans.length; j++) {
+                    spans[j].removeAttribute("class");
+                }
+                //第二步，为当前点击的按钮添加样式
+                this.className = "current";
+                //被点击时获取它的索引值,为对应div赋值
+                var num = this.getAttribute("index");
+                for (var k = 0; k < lis.length; k++) {
+                    lis[k].removeAttribute("class");
+                }
+                lis[num].className = "current";
+            };
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nodePractice</title>
+</head>
+
+<body>
+    <div id="dv">
+        <span>这是div中的第一个span标签</span>
+        <p>这是div中的第二个元素,第一个p标签</p>
+        <ul id="uu">
+            <li>乔峰</li>
+            <li>鹿茸</li>
+            <li id="three">段誉</li>
+            <li>卡卡西</li>
+            <li>雏田</li>
+        </ul>
+    </div>
+    <script src="../common.js"></script>
+    <script>
+        /*
+        *回顾概念
+        * 文档:document
+        * 元素:页面中所有的标签,元素---element,  标签----元素---对象
+        * 节点:页面中所有的内容(标签,属性,文本(文字,换行,空格,回车)),Node
+        * 根元素:html标签
+        *
+        * 节点的属性:(可以使用标签--元素.出来,可以使用属性节点.出来,文本节点.出来)
+        * nodeType:节点的类型:1----标签,2---属性,3---文本
+        * nodeName:节点的名字:标签节点---大写的标签名字,属性节点---小写的属性名字,文本节点----#text
+        * nodeValue:节点的值:标签节点---null,属性节点---属性值,文本节点---文本内容
+        * 
+        */
+
+        var ulObject = my$("uu");
+        //父节点
+        //ul标签的父节点
+        console.log(ulObject.parentNode);//<div id="dv">...</div>
+
+        //ul标签的父元素
+        console.log(ulObject.parentElement);//<div id="dv">...</div>
+
+        //ul标签父节点的nodeType、nodeName、nodeValue
+        console.log(ulObject.parentNode.nodeType);//1
+        console.log(ulObject.parentNode.nodeName);//DIV
+        console.log(ulObject.parentNode.nodeValue);//null
+        console.log("===========================");
+        //子节点
+        var dvObject = my$("dv");
+
+        //子节点(7个，包括回车换行)
+        console.log(dvObject.childNodes);//NodeList [#text "", <span>, #text "", <p>, #text "", <ul id="uu">, #text ""] (7)
+
+        //子元素(3个)
+        console.log(dvObject.children);//HTMLCollection [<span>, <p>, <ul id="uu">] (3)
+
+        console.log("===========================");
+        for (var i = 0; i < dvObject.childNodes.length; i++) {
+            var num = dvObject.childNodes[i];
+            console.log(num.nodeType + "=====" + num.nodeName + "=====" + num.nodeValue);
+        }
+
+        console.log("===========================");
+        //根据属性名获取属性值
+        var node = dvObject.getAttributeNode("id");//不常用
+        console.log(node.nodeType + "=====" + node.nodeName + "=====" + node.nodeValue);
+
+        console.log("===========================");
+        console.log(ulObject.firstChild);//------------------------IE8中是第一个子元素
+        //第一个子元素
+        console.log(ulObject.firstElementChild);//-----------------IE8中不支持
+        //最后一个子节点
+        console.log(ulObject.lastChild);//------------------------IE8中是第一个子元素
+        //最后一个子元素
+        console.log(ulObject.lastElementChild);//-----------------IE8中不支持
+        //某个元素的前一个兄弟节点
+        console.log(my$("three").previousSibling);
+        //某个元素的前一个兄弟元素
+        console.log(my$("three").previousElementSibling);
+        //某个元素的后一个兄弟节点
+        console.log(my$("three").nextSibling);
+        //某个元素的后一个兄弟元素
+        console.log(my$("three").nextElementSibling);
+
+  //总结:凡是获取节点的代码在谷歌和火狐得到的都是  相关的节点
+  //凡是获取元素的代码在谷歌和火狐得到的都是   相关的元素
+  //从子节点和兄弟节点开始,凡是获取节点的代码在IE8中得到的是元素,获取元素的相关代码,在IE8中得到的是undefined----元素的代码,iE中不支持
+
+    </script>
+</body>
+
+</html>

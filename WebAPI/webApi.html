@@ -44,7 +44,7 @@
         <input type="button" value="没点" />
         <input type="button" value="没点" />
         <input type="button" value="没点" />
-        </br></br></br>
+        <br/><br/><br/>
     </div>
 
     <script>
@@ -78,7 +78,7 @@
     </div>
     <p>hello</p>
     <p>hello</p>
-    </br></br>
+    <br/><br/>
     <script>
         var pButton = document.getElementById("iButton");
         var count = 0;
@@ -109,7 +109,7 @@
     <input type="checkbox" value="4" name="hoppy" id="ck3" />弹琴
     <input type="checkbox" value="5" name="hoppy" />唱歌
     <input type="checkbox" value="6" name="hoppy" />跳舞
-    </br></br></br></br>
+    <br/><br/><br/><br/>
     <script>
         //规律：若属性值与属性名相同，如checked、disabled、readonly等，便可以用true代替属性值
         function my$(id) {
@@ -132,7 +132,7 @@
         }
     </style>
     <input type="button" id="btn3" value="灯" />
-    </br></br></br></br>
+    <br/><br/><br/><br/>
     <script>
         document.getElementById("btn3").onclick = function () {
             document.body.className = document.body.className != "cls" ? "cls" : "";
@@ -150,6 +150,7 @@
     <script>
         //总结:设置自定义属性:setAttribute("属性的名字","属性的值");
         //获取自定义属性的值:getAttribute("属性的名字")
+        //移除自定义属性的值:removeAttribute("属性的名字")  也可以移除元素自带属性
 
         //获取所有的li标签,然后为每个标签中动态的添加自定义属性和值
         //点击的时候获取该标签的自定义属性的值
