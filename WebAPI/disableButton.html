@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>disableButton</title>
+</head>
+
+<body>
+    <textarea name="texta" id="" cols="30" rows="10">
+        后缀树是一种非常重要的数据结构,它在与字符串处理相关的各种领域里有着非常广泛的应用。构造后缀树是应用后缀树解决问题的前提和关键。
+    </textarea>
+    <input type="button" value="请仔细阅读协议(5)" id="btn" disabled="disabled" />
+</body>
+<script src="../common.js"></script>
+<script>
+    var time = 5;
+
+    var timeId = setInterval(function () {
+        time--;
+        my$("btn").value = "请仔细阅读协议(" + time + ")";
+        if (time <= 0) {
+            clearInterval(timeId);
+            my$("btn").disabled = false;
+            my$("btn").value = "同意";
+        }
+
+    }, 1000);
+
+</script>
+
+</html>

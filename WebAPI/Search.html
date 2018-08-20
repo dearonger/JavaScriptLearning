@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 450px;
+            margin: 200px auto;
+        }
+
+        #txt {
+            width: 350px;
+        }
+
+        #pop {
+            width: 350px;
+            border: 1px solid red;
+        }
+
+        #pop ul {
+            margin: 10px;
+            padding: 0px;
+            width: 200px;
+            list-style-type: none;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <input type="text" id="txt" value="">
+        <input type="button" value="搜索" id="btn">
+
+    </div>
+
+    <script src="../common.js"></script>
+    <script>
+        var keyWords = ["小杨才是最纯洁的", "小杨才是最帅的", "小段是最猥琐的", "小超是最龌龊的", "传智播客是一个培训机构", "传说在传智有个很帅很纯洁的小杨", "苹果好吃", "苹果此次召回还是没有中国"];
+        my$("txt").onkeyup = function () {
+            //每次键盘抬起时都判断一次是否有div
+            if (my$("dv")) {
+                my$("box").removeChild(my$("dv"));
+            }
+            var text = this.value;
+            var tempText = [];
+            for (var i = 0; i < keyWords.length; i++) {
+                if (keyWords[i].indexOf(text) == 0) {
+                    tempText.push(keyWords[i]);
+                }
+            }
+            //如果文本框与临时数组都是空的，不用创建
+            if (this.value.length == 0 || tempText.length == 0) {
+                if (my$("dv")) {
+                    my$("box").removeChild(my$("dv"));
+                }
+                return;
+            }
+            //遍历临时数组，创建div
+            var dvObj = document.createElement("div");
+            my$("box").appendChild(dvObj);
+            dvObj.id = "dv";
+            dvObj.style.width = "350px";
+            dvObj.style.border = "1px solid green";
+            for (var i = 0; i < tempText.length; i++) {
+                var pObj = document.createElement("p");
+                dvObj.appendChild(pObj);
+                setInnerText(pObj, tempText[i]);
+                pObj.style.margin = 0;
+                pObj.style.padding = 0;
+                pObj.style.cursor = "pointer";
+                pObj.style.marginLeft = "5px";
+                pObj.style.marginTop = "5px";
+                pObj.onmouseover = function () {
+                    this.style.backgroundColor = "#ccc";
+                };
+                pObj.onmouseout = function onMouseOutHandle() {
+                    this.style.backgroundColor = "";
+                };
+            }
+        };
+
+
+    </script>
+
+</body>
+
+</html>
