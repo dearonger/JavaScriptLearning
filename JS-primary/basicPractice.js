@@ -33,7 +33,7 @@ for (var i = 1; i <= 9; i++) {
     document.write(i + "*" + j + "=" + i * j);
     document.write("&nbsp");
   }
-  document.write("</br>");
+  document.write("<br/>");
 }
 
 //斐波那契 想知道一年之内一对兔子能繁殖多少对兔子。已知一对兔子一个月可以生一对小兔子，

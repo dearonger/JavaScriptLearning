@@ -117,7 +117,7 @@ console.log(arr6);
 arr6.reverse();
 console.log(arr6);
 
-//模拟数组的sort方法排序
+//模拟数组的sort方法排序  冒泡排序
 var arr8 = [1, 2, 6, 4, 4, 6, 7, 8, 3, 5, 6, 3, 7, 9, 0, 10];
 //自定义构造函数
 function MyArray() {

@@ -69,6 +69,7 @@ function Person(name, age, salary) {
 function f1(person) {
   //该语句将修改实参的内容
   person.name = "ls";
+
   //该语句将 person 中存储的地址改变了，但是不会改变实参的内容
   person = new Person("aa", 18, 1000);
 }
