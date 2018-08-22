@@ -42,3 +42,20 @@ function removeEventListener(element, type, fnName) {
     element["on" + type] = null;
   }
 }
+
+//元素移动函数
+function move(ele, target) {
+  clearInterval(ele.timeId);
+  var current = ele.offsetLeft;
+  ele.timeId = setInterval(function() {
+    var step = 10;
+    step = target > current ? step : -step;
+    current += step;
+    if (Math.abs(target - current) > Math.abs(step)) {
+      ele.style.left = current + "px";
+    } else {
+      clearInterval(ele.timeId);
+      ele.style.left = target + "px";
+    }
+  }, 20);
+}

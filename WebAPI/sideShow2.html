@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 520px;
+            height: 280px;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+
+        .ad {
+            width: 520px;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #box img {
+            width: 520px;
+        }
+
+        .ad ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .ad ol li {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            background: #fff;
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+            _display: inline;
+        }
+
+        .ad ol li.current {
+            background: yellow;
+        }
+
+        .ad ul li {
+            float: left;
+        }
+
+        .ad ul {
+            position: absolute;
+            top: 0;
+            width: 2940px;
+        }
+
+        .ad ul li.current {
+            display: block;
+        }
+
+        #focusD {
+            display: none;
+        }
+
+        #focusD span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #focusD #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="all">
+        <div class="ad">
+            <ul id="imgs">
+                <li><img src="../images/images2/01.jpg" /></li>
+                <li><img src="../images/images2/02.jpg" /></li>
+                <li><img src="../images/images2/03.jpg" /></li>
+                <li><img src="../images/images2/04.jpg" /></li>
+                <li><img src="../images/images2/05.jpg" /></li>
+            </ul>
+        </div>
+        <!--相框-->
+        <div id="focusD">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+    <script src="../common.js"></script>
+    <script>
+        var box = my$("box");
+        var ad = box.children[0];
+        var ulObj = box.children[0].children[0];
+        var focD = my$("focusD");
+        var imgWidth = ad.offsetWidth;
+        box.onmouseover = function () {
+            focD.style.display = "block";
+        }
+        box.onmouseout = function () {
+            focD.style.display = "none";
+        }
+        var index = 0;
+        my$("right").onclick = function () {
+            if (index < ulObj.children.length - 1) {
+                index++;
+            }
+            move(ulObj, -index * imgWidth);
+        }
+        my$("left").onclick = function () {
+            if (index > 0) {
+                index--;
+            }
+            move(ulObj, -index * imgWidth);
+        }
+    </script>
+
+</body>
+
+</html>
