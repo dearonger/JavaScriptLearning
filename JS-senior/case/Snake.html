@@ -99,6 +99,18 @@
                     case "top": this.body[0].y -= 1; break;
                     case "bottom": this.body[0].y += 1; break;
                 }
+                //判断蛇头的位置是否与食物一致
+                let headX = this.body[0].x * this.width;
+                let headY = this.body[0].y * this.height;
+                if (headX == food.x && headY == food.y) {
+                    food.init(map);
+                    let last = this.body[this.body.length - 1];
+                    this.body.push({
+                        x: last.x,
+                        y: last.y,
+                        color: last.color,
+                    })
+                }
             }
             function remove() {
                 //为什么正序会出错？
@@ -126,6 +138,7 @@
                 this.food.init(this.map);
                 this.snake.init(this.map);
                 this.runSnake(this.map, this.food);
+                this.bindKey();
             }
             Game.prototype.runSnake = function (map, food) {
                 let timeId = setInterval(function () {
@@ -145,9 +158,16 @@
                     }
                 }.bind(that), 150);
             }
-            // Game.prototype.eat=function(map,food){
-
-            // }
+            Game.prototype.bindKey = function () {
+                document.addEventListener("keydown", function (e) {
+                    switch (e.keyCode) {
+                        case 37: this.snake.direction = "left"; break;
+                        case 38: this.snake.direction = "top"; break;
+                        case 39: this.snake.direction = "right"; break;
+                        case 40: this.snake.direction = "bottom"; break;
+                    }
+                }.bind(that), false);
+            }
             window.Game = Game;
         }());
 
