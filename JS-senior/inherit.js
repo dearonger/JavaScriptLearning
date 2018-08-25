@@ -67,10 +67,11 @@ Person.prototype.height = 100;
 Person.prototype.play = function() {
   console.log("玩的好开心");
 };
+
 var obj2 = {};
 //Person的构造中有原型prototype,prototype就是一个对象,那么里面,age,sex,height,play都是该对象中的属性或者方法
-
 for (var key in Person.prototype) {
+  //浅拷贝
   obj2[key] = Person.prototype[key];
 }
 console.dir(obj2);

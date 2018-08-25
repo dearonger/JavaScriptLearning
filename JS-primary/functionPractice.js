@@ -129,3 +129,21 @@ function f1() {
 }
 //var a=b=c=9相当于：
 //var a=9; b=9; c=9; 其中a有声明，而 b 与 c 则为隐式全局变量
+
+//❗️o(n)时间复杂度 实现去重
+//利用object的键是唯一的这一属性实现
+function unq(array) {
+  let obj = {};
+  let arr = [];
+  for (let i = 0; i < array.length; i++) {
+    //.hasOwnProperty()用来判断对象中是否有某个属性，把内容作为键值存入对象
+    if (!obj.hasOwnProperty(array[i])) {
+      obj[array[i]] = 1;
+      arr.push(array[i]);
+    }
+  }
+  return arr;
+}
+console.log(
+  unq([1, 2, 1, 34, 6, 84, 5, 3, 6, 2, [1, 2, 3], [], [3, 2, 1], [1, 2, 3]])
+);

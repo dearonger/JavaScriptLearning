@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>snake</title>
+    <style>
+        .map {
+            width: 800px;
+            height: 600px;
+            background-color: #ccc;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="map"></div>
+    <script>
+        //自调用函数，食物
+        (function () {
+            let element = [];
+            //食物对象
+            function Food(x, y, width, height, color) {
+                this.x = x || 0;
+                this.y = y || 0;
+                this.width = width || 20;
+                this.height = height || 20;
+                this.color = color || "green";
+            }
+            //init方法初始化食物对象
+            Food.prototype.init = function (map) {
+                remove();
+                let div = document.createElement("div");
+                div.style.width = this.width + "px";
+                div.style.height = this.height + "px";
+                div.style.backgroundColor = this.color;
+                div.style.position = "absolute";
+                this.x = parseInt(Math.random() * map.offsetWidth / this.width) * this.width;
+                this.y = parseInt(Math.random() * map.offsetHeight / this.height) * this.height;
+                div.style.left = this.x + "px";
+                div.style.top = this.y + "px";
+                map.appendChild(div);
+                element.push(div);
+            };
+            //定义一个私有函数，用来删除多余的食物
+            function remove() {
+                for (let i = 0; i < element.length; i++) {
+                    let ele = element[i];
+                    ele.parentNode.removeChild(ele);
+                    element.splice(i, 1);
+                }
+            }
+            //将Food暴露给window，外部就可以调用了
+            window.Food = Food;
+        }());
+
+        //自调用函数，snake
+        (function () {
+            let element = [];
+            //小蛇的构造函数
+            function Snake(width, height, direction) {
+                this.width = width || 20;
+                this.height = height || 20;
+                this.body = [
+                    { x: 3, y: 2, color: "purple", },
+                    { x: 2, y: 2, color: "pink", },
+                    { x: 1, y: 2, color: "pink", },
+                ]
+                this.direction = direction || "right";
+            }
+            Snake.prototype.init = function (map) {
+                remove();
+                for (let i = 0; i < this.body.length; i++) {
+                    let obj = this.body[i];
+                    let div = document.createElement("div");
+                    map.appendChild(div);
+                    div.style.width = this.width + "px";
+                    div.style.height = this.height + "px";
+                    div.style.position = "absolute";
+                    div.style.left = obj.x * this.width + "px";
+                    div.style.top = obj.y * this.height + "px";
+                    div.style.backgroundColor = obj.color;
+                    element.push(div);
+                }
+            }
+            Snake.prototype.move = function (map, food) {
+                let i = this.body.length - 1;
+                for (; i > 0; i--) {
+                    this.body[i].x = this.body[i - 1].x;
+                    this.body[i].y = this.body[i - 1].y;
+                }
+                //蛇头的方向
+                switch (this.direction) {
+                    case "right": this.body[0].x += 1; break;
+                    case "left": this.body[0].x -= 1; break;
+                    case "top": this.body[0].y -= 1; break;
+                    case "bottom": this.body[0].y += 1; break;
+                }
+            }
+            function remove() {
+                //为什么正序会出错？
+                let i = element.length - 1;
+                for (; i >= 0; i--) {
+                    let ele = element[i];
+                    ele.parentNode.removeChild(ele);
+                    element.splice(i, 1);
+                }
+            }
+            window.Snake = Snake;
+        }());
+
+        //自调用，游戏
+        (function () {
+            let that = null;
+            //封装游戏对象
+            function Game(map) {
+                this.food = new Food();
+                this.snake = new Snake();
+                this.map = map;
+                that = this;
+            }
+            Game.prototype.init = function () {
+                this.food.init(this.map);
+                this.snake.init(this.map);
+                this.runSnake(this.map, this.food);
+            }
+            Game.prototype.runSnake = function (map, food) {
+                let timeId = setInterval(function () {
+                    this.snake.move(map, food);
+                    this.snake.init(map);
+                    let maxX = map.offsetWidth / this.snake.width;
+                    let maxY = map.offsetHeight / this.snake.height;
+                    let headX = this.snake.body[0].x;
+                    let headY = this.snake.body[0].y;
+                    if (headX < 0 || headX >= maxX) {
+                        clearInterval(timeId);
+                        alert("GAME OVER");
+                    }
+                    if (headY < 0 || headY >= maxY) {
+                        clearInterval(timeId);
+                        alert("GAME OVER");
+                    }
+                }.bind(that), 150);
+            }
+            // Game.prototype.eat=function(map,food){
+
+            // }
+            window.Game = Game;
+        }());
+
+        let game = new Game(document.querySelector(".map"));
+        game.init();
+
+    </script>
+
+</body>
+
+</html>
