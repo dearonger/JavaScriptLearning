@@ -155,7 +155,8 @@ var obj = {}; //对象
 //判断这个对象是不是某个类型的
 console.log(obj instanceof Object);
 //获取某个对象的数据类型的样子
-Object.prototype.toString.call(obj); //此时得到的就是这个对象的类型
+//此时得到的就是这个对象的类型
+Object.prototype.toString.call(obj);
 //输出的是Object的数据类型   [object Object]
 
 console.log(Object.prototype.toString.call([]));
