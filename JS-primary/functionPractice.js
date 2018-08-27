@@ -147,3 +147,41 @@ function unq(array) {
 console.log(
   unq([1, 2, 1, 34, 6, 84, 5, 3, 6, 2, [1, 2, 3], [], [3, 2, 1], [1, 2, 3]])
 );
+
+//获取数据类型的方法以及函数作为返回值使用
+var num = 10;
+console.log(typeof num); //获取num这个变量的数据类型
+var obj = {}; //对象
+//判断这个对象是不是某个类型的
+console.log(obj instanceof Object);
+//获取某个对象的数据类型的样子
+Object.prototype.toString.call(obj); //此时得到的就是这个对象的类型
+//输出的是Object的数据类型   [object Object]
+
+console.log(Object.prototype.toString.call([]));
+//输出的数组的数据类型      [object Array]
+var arr = [10, 20, 30];
+console.log(Object.prototype.toString.call(arr));
+
+console.log(Object.prototype.toString.call(new Date()));
+
+//获取某个对象的类型是不是你传入的类型
+//[10,20,30] 是不是"[object Array]"
+//type---是变量----是参数----"[object Array]"
+//obj---是变量-----是参数----[10,20,30];
+
+//判断这个对象和传入的类型是不是同一个类型
+function getFunc(type) {
+  return function(obj) {
+    return Object.prototype.toString.call(obj) === type;
+  };
+}
+
+var ff = getFunc("[object Array]"); //ff作为getFunc的返回值，其中ff是函数
+var result = ff([10, 20, 30]); //ff也有参数
+console.log(result);
+
+var ff1 = getFunc("[object Object]");
+var dt = new Date();
+var result1 = ff1(dt);
+console.log(result1); //false
