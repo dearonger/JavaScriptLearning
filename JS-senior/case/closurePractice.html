@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>闭包点赞</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            float: left;
+            margin-left: 10px;
+        }
+
+        img {
+            width: 300px;
+            height: 180px;
+        }
+
+        input {
+            margin-left: 40%;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul>
+        <li><img src="../../images/images/1.jpg" alt=""><br/><input type="button" value="赞(0)"></li>
+        <li><img src="../../images/images/2.jpg" alt=""><br/><input type="button" value="赞(0)"></li>
+        <li><img src="../../images/images/3.jpg" alt=""><br/><input type="button" value="赞(0)"></li>
+        <li><img src="../../images/images/4.jpg" alt=""><br/><input type="button" value="赞(0)"></li>
+    </ul>
+    <script src="../../common.js"></script>
+    <script>
+        var btn = document.getElementsByTagName("input");
+        function getValue() {
+            let num = 1;
+            return function () {
+                this.value = "赞(" + (num++) + ")";
+            }
+        }
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].onclick = getValue();
+        }
+    </script>
+</body>
+
+</html>
