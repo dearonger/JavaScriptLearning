@@ -10,9 +10,7 @@
         #dv {
             width: 300px;
             height: 200px;
-            position: absolute;
-            left: 300px;
-            top: 100px;
+            margin: 0 auto;
         }
 
         .strengthLv0 {
@@ -49,6 +47,19 @@
             padding: 2px;
             margin-top: 10px;
         }
+
+        #email {
+            width: 550px;
+            margin: 0 auto;
+        }
+
+        .rightEml {
+            background-color: green;
+        }
+
+        .faultEml {
+            background-color: red;
+        }
     </style>
 </head>
 
@@ -63,6 +74,12 @@
             <div id="strengthLevel" class="strengthLv0"></div>
         </div>
     </div>
+    <br/><br/><br/>
+    <div id="email">
+        <label for="email">请输入邮箱地址：<span style="color:red">*</span></label>
+        <input id="eml" type="text" class="">
+    </div>
+
     <script src="../../common.js"></script>
     <script>
         my$("pwd").addEventListener("keyup", function () {
@@ -81,6 +98,40 @@
             }
             return lvl;
         }
+    </script>
+    <script>
+        my$("eml").addEventListener("blur", function () {
+            //邮箱的正则表达式
+            let re = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
+            if (this.value != "") {
+                this.className = re.test(this.value) ? "rightEml" : "faultEml";
+            }
+            else this.className = "";
+        })
+    </script>
+    <script>
+        //通过正则表达式,把这个字符串中的所有的数字找到
+        //"我的电话:10086,他的电话:10010,你的电话:10000" 
+        let str = "我的电话:10086,他的电话:10010,你的电话:10000";
+        let arr = str.match(/\d+/g);
+        //正则表达式之后加 g 表示全局模式匹配，可以找到全部匹配的字符串
+        console.log(arr);
+
+        //提取日期中的 日
+        let str1 = "2018-08-28";
+        let arr1 = str1.match(/(\d{4})[-](\d{2})[-](\d{2})/); //用括号分组
+        console.log(RegExp.$3);//正则表达式.$3
+
+        //替换
+        let str2 = "今天天气真坏，心情也坏";
+        let str3 = str2.replace(/坏/g, "好");
+        console.log(str3); //今天天气真好，心情也好
+
+        //也可以用来去掉空格
+        //let str4 = str2.replace(/\s+/g, "");
+        //将所有h替换成s "hHhHHhffsHs"
+        //正则表达式之后加 i 表示忽略大小写
+        //let str5 = str2.replace(/[h]/gi, "s");
     </script>
 </body>
 
