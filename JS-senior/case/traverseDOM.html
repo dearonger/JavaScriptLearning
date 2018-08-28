@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>traverse the DOM tree</title>
+</head>
+
+<body>
+    <h1>遍历 DOM 树</h1>
+    <p style="color: green;">Tip: 可以在遍历的回调函数中任意定制需求</p>
+    <div>
+        <ul>
+            <li>123</li>
+            <li>456</li>
+            <li>789</li>
+        </ul>
+        <div>
+            <div>
+                <span>hi</span>
+            </div>
+        </div>
+    </div>
+    <div id="demo_node">
+        <ul>
+            <li>123</li>
+        </ul>
+        <p>hello</p>
+        <h2>world</h2>
+        <div>
+            <p>dsa</p>
+            <h3>
+                <span>dsads</span>
+            </h3>
+        </div>
+    </div>
+    <script>
+        let root = document.documentElement;
+        function forDOM(root, fn) {
+            fn(root);
+            let children = root.children;
+            forChildren(children, fn);
+        }
+        function forChildren(children, fn) {
+            for (let i = 0; i < children.length; i++) {
+                let child = children[i];
+                fn(children);
+                child.children && forDOM(child, fn);
+            }
+        }
+        forDOM(root, function (node) {
+            console.log("节点名为：" + node.nodeName);
+        });
+    </script>
+</body>
+
+</html>
