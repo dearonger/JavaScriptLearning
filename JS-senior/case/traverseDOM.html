@@ -46,7 +46,7 @@
         function forChildren(children, fn) {
             for (let i = 0; i < children.length; i++) {
                 let child = children[i];
-                fn(children);
+                fn(child);
                 child.children && forDOM(child, fn);
             }
         }
