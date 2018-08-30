@@ -63,7 +63,7 @@
             display: none;
         }
     </style>
-    <title id="title">JavaScript/Nodejs/ 的索引</title>
+    <title id="title">{{title}}</title>
 </head>
 
 <body>
@@ -87,7 +87,15 @@
                 </th>
             </tr>
         </thead>
-        <tbody id="tbody">^_^</tbody>
+        <tbody id="tbody">
+            {{each files}}
+            <tr>
+                <td data-value="/"><a class="icon dir" href="/Users/wzh/Projects/JavaScriptLearning/Nodejs/">{{$value}}</a></td>
+                <td class="detailsColumn" data-value="0"></td>
+                <td class="detailsColumn" data-value="1509589967">2017/11/2 上午10:32:47</td>
+            </tr>
+            {{/each}}
+        </tbody>
     </table>
 </body>
 

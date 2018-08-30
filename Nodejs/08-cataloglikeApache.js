@@ -22,7 +22,6 @@ server.on("request", function(req, resp) {
       }
       // 2.1 生成需要替换的内容
       let content = "";
-      console.log(files);
       files.forEach(function(item) {
         // 在 EcmaScript 6 的 ` 字符串中，可以使用 ${} 来引用变量
         content += `
