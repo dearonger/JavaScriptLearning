@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template in Web</title>
+</head>
+
+<body>
+    <!-- 
+    注意：在浏览器中需要引用 lib/template-web.js 文件
+
+    强调：模板引擎不关心你的字符串内容，只关心自己能认识的模板标记语法，例如 {{}}
+    {{}} 语法被称之为 mustache 语法，八字胡啊。
+   -->
+    <script src="node_modules/art-template/lib/template-web.js"></script>
+    <script type="text/template" id="tpl">
+        my name is {{name}}
+        I'm {{age}} years
+        I like {{each hobbies}} {{$value}}, {{/each}}
+    </script>
+    <script>
+        let res = template("tpl", {
+            name: "jerry",
+            age: 18,
+            hobbies: [
+                "play",
+                "eat",
+                "sleep"
+            ]
+        });
+        console.log(res);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<html dir="ltr" lang="zh" i18n-processed="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="google" value="notranslate">
+
+    <style>
+        h1 {
+            border-bottom: 1px solid #c0c0c0;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            white-space: nowrap;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        td.detailsColumn {
+            -webkit-padding-start: 2em;
+            text-align: end;
+            white-space: nowrap;
+        }
+
+        a.icon {
+            -webkit-padding-start: 1.5em;
+            text-decoration: none;
+        }
+
+        a.icon:hover {
+            text-decoration: underline;
+        }
+
+        a.file {
+            background-image: url("./data/forder.png") left top no-repeat;
+        }
+
+        a.dir {
+            background-image: url("./data/text.png") left top no-repeat;
+        }
+
+        a.up {
+            background-image: url("./data/forder.png") left top no-repeat;
+        }
+
+        html[dir=rtl] a {
+            background-position-x: right;
+        }
+
+        #parentDirLinkBox {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+
+        #listingParsingErrorBox {
+            border: 1px solid black;
+            background: #fae691;
+            padding: 10px;
+            display: none;
+        }
+    </style>
+    <title id="title">JavaScript/Nodejs/ 的索引</title>
+</head>
+
+<body>
+    <div id="listingParsingErrorBox">糟糕！Google Chrome无法解读服务器所发送的数据。请<a href="http://code.google.com/p/chromium/issues/entry">报告错误</a>，并附上<a
+            href="LOCATION">原始列表</a>。</div>
+    <h1 id="header">JavaScript/Nodejs/ 目录的索引</h1>
+    <div id="parentDirLinkBox" style="display:none">
+        <a id="parentDirLink" class="icon up">
+            <span id="parentDirText">[上级目录]</span>
+        </a>
+    </div>
+    <table>
+        <thead>
+            <tr class="header" id="theader">
+                <th onclick="javascript:sortTable(0);">名称</th>
+                <th class="detailsColumn" onclick="javascript:sortTable(1);">
+                    大小
+                </th>
+                <th class="detailsColumn" onclick="javascript:sortTable(2);">
+                    修改日期
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tbody">^_^</tbody>
+    </table>
+</body>
+
+</html>
