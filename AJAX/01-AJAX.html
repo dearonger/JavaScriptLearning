@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX</title>
+</head>
+
+<body>
+    <script>
+        // 涉及到 AJAX 操作的页面“不能”使用文件协议访问（文件的方式访问）
+
+        // AJAX 是浏览器提供给我们的一套 API 。核心提供的类型：XMLHttpRequest
+        // 1. 安装浏览器（用户代理）
+        //  xhr 就类似于浏览器的作用（发送请求接收响应）
+        var xhr = new XMLHttpRequest();
+        console.log(xhr.readyState);
+        // 2. 打开浏览器 输入网址
+        xhr.open("GET", "../common.js");
+        console.log(xhr.readyState);
+        // 3. 敲回车键 开始请求
+        xhr.send();// ❓Cross origin requests are only supported for HTTP.
+        console.log(xhr.readyState);
+        // 4. 等待响应
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState !== 4) return;
+            // 5. 看结果
+            console.log(this.responseText);
+            console.log(xhr.readyState);
+        });
+
+
+
+    </script>
+</body>
+
+</html>
