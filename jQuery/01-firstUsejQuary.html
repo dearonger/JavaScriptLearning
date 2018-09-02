@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>the First time to use jQuary </title>
+    <style>
+        div {
+            height: 200px;
+            background-color: pink;
+            margin: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1" value="show div">showDiv</button>
+    <button id="btn2" value="show content">showContent</button>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        //js的缺点：
+        //1. 代码比较麻烦，需要遍历，可能还需要嵌套。
+        //2. 找对象麻烦，方法少，还长
+        //3. 会有兼容性问题。
+        //4. 如果想要实现简单的动画效果 animate
+        //5. js注册事件，onclick 会被覆盖，要用 addEventListener
+
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("div").show();
+                //多种动画效果
+                //$("div").slideDown(1000);
+                //$("div").fadeIn(1000);
+            });
+            $("#btn2").click(function () {
+                $("div").text("I am content");
+            });
+        });
+
+    </script>
+    <script>
+
+        //$其实就是一个函数，以后用$的时候，记得跟小括号 $();
+        //参数不同，功能就不同
+        //3种用法
+        //1. 参数是一个function, 入口函数
+        $(function () {
+        });
+        console.log(typeof $);// function
+
+        //2. $(domobj)  把dom对象转换成jquery对象
+        //  $(document).ready(function () {
+        //
+        //  });
+
+        //3. 参数是一个字符串,用来找对象
+        //$("div") $("div ul")   $(".current")
+    </script>
+    <script>
+
+        //js的入口函数执行要比jQuery的入口函数执行得晚一些。
+        //jq的入口函数会等待页面的加载完成才执行，但是不会等待图片的加载。
+        //js的入口函数会等待页面加载完成，并且等待图片加载完成才开始执行。
+
+        window.onload = function () {
+            console.log("我是js的入口函数");
+        };
+
+        //认识
+        $(document).ready(function () {
+            console.log("这是jQuery入口函数的第一种写法");
+        });
+
+        $(function () {
+            console.log("这是jQuery入口函数的第二种写法");
+        });
+    </script>
+</body>
+
+</html>
