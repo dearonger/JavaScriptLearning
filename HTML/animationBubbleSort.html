@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画演示冒泡排序</title>
+    <style>
+        .content {
+            text-align: center;
+        }
+
+        .sort {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            transition: 1s;
+            line-height: 50px;
+            position: absolute;
+            list-style: none;
+        }
+
+        .color {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+
+    </div>
+    <script>
+        let arr = [2, 4, 45, 7, 2, 4, 8, 37, 10, 2, 5];
+        function startSort(arr) {
+            let content = document.getElementsByClassName("content")[0];
+            let time = 1;
+            for (let i = 0; i < arr.length; i++) {
+                let node = document.createElement("li");
+                node.id = i;
+                node.className = "sort";
+                node.style.left = (i + 1) * 60 + "px";
+                node.innerHTML = arr[i];
+                content.appendChild(node);
+            }
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                        setTimeout(function () {
+                            let node1 = document.getElementById(j);
+                            let node2 = document.getElementById(j + 1);
+                            node1.style.border = "2px solid red";
+                            node2.style.border = "2px solid red";
+                            [node1.style.left, node2.style.left] = [node2.style.left, node1.style.left];
+                            [node1.id, node2.id] = [node2.id, node1.id];
+                            setTimeout(function () {
+                                node2.style.border = "2px solid black";
+                            }, 1000);
+                        }, time * 1000);
+                        time++;
+                    }
+                }
+            }
+        }
+        startSort(arr);
+    </script>
+</body>
+
+</html>
