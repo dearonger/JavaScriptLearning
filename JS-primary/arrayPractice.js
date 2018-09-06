@@ -17,6 +17,7 @@
  * .reverse() 将数组中元素的位置颠倒，并返回数组的引用（修改了数组的内容）
  * .slice(beginSlice[,endSlice]) 提取数组的一部分并返回新的数组
  * .splice(startIndex[,deleteCount[, item1[, item2[, ...]]]]) 方法通过删除现有元素和/或添加新元素来更改一个数组的内容
+ * Array.from(str) 可将字符串转换成数组，返回一个新数组
  *
  */
 //.every()
@@ -56,11 +57,7 @@ console.log(arr5); //[1, 2, 34, 48, 53, 6, 64]不稳定
 
 // ❗️.sort(function)
 arr5.sort(function(a, b) {
-  if (a > b) {
-    return 1;
-  } else if (a == b) {
-    return 0;
-  } else return -1;
+  return a > b; //return a - b;
 });
 console.log(arr5); //[1, 2, 6, 34, 48, 53, 64]
 
@@ -103,6 +100,17 @@ arr6.forEach(function(ele, index) {
 });
 console.log(arr7);
 //方法三 排序，若与相邻元素不等，push，否则，跳过（略）
+
+//移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回
+function removeWithoutCopy(arr, item) {
+  for (var i = arr.length - 1; i >= 0; i--) {
+    //倒着遍历就不怕影响到别的索引值
+    if (arr[i] === item) {
+      arr.splice(i, 1);
+    }
+  }
+  return arr;
+}
 
 //将一个数组的元素逆置
 //方法一

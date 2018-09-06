@@ -84,7 +84,7 @@ server.on("request", function(req, res) {
   } else if (url === "/html") {
     // 如果你发送的是 html 格式的字符串，则也要告诉浏览器我给你发送是 text/html 格式的内容
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.end('<p>hello html <a href="">点我</a></p>');
+    res.end('<p>hello html <a href="">点我</a></p>'); //相当于在html中写入了<p>hello html <a href="">点我</a></p>
   }
 });
 

@@ -16,7 +16,7 @@ server.on("request", function(req, res) {
 
   if (url === "/") {
     // 我们要发送的还是在文件中的内容
-    fs.readFile("./resource/index.html", function(err, data) {
+    fs.readFile("./data/b.md", function(err, data) {
       if (err) {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
         res.end("文件读取失败，请稍后重试！");
@@ -30,7 +30,7 @@ server.on("request", function(req, res) {
   } else if (url === "/baby") {
     // url：统一资源定位符
     // 一个 url 最终其实是要对应到一个资源的
-    fs.readFile("./resource/ab2.jpg", function(err, data) {
+    fs.readFile("./data/a.md", function(err, data) {
       if (err) {
         res.setHeader("Content-Type", "text/plain; charset=utf-8");
         res.end("文件读取失败，请稍后重试！");

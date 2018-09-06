@@ -25,13 +25,13 @@ function primeNumber(m) {
 var number = parseInt(prompt("请输入数字："));
 primeNumber(number);
 
-//方法2
 // 在函数前输入 /** + Enter 可以写函数注释，在别处调用函数时，cmd+鼠标左键点击函数名，可以找到函数定义。
 /**
  *
  * @param {*} num 参数是用来判断是否是质数的数，实现···功能
  *
  */
+//方法2
 function isPrimeNumber(num) {
   for (var i = 2; i < num / 2; i++) {
     if (num % i == 0) {
@@ -186,3 +186,38 @@ var ff1 = getFunc("[object Object]");
 var dt = new Date();
 var result1 = ff1(dt);
 console.log(result1); //false
+
+let a = "20180803dshjfjjr490482dsfdbnd7835";
+//取出数字，去重，奇数偶数分开。
+function removeRep(a) {
+  //取数字
+  let num = a.match(/\d+/g);
+  let str = "";
+  for (let i = 0; i < num.length; i++) {
+    str += num[i];
+  }
+  //转数组
+  let arr = [];
+  arr = Array.from(str);
+  console.log(arr);
+  let temp = [];
+  //去重
+  arr.forEach(function(elem) {
+    if (temp.indexOf(elem) === -1) {
+      temp.push(elem);
+    }
+  });
+  let arrOdd = [];
+  let arrEven = [];
+  temp.forEach(function(elem) {
+    if (parseInt(elem) % 2 === 0) {
+      arrEven.push(elem);
+    } else arrOdd.push(elem);
+  });
+  arrEven.sort();
+  arrOdd.sort();
+  result = arrOdd.concat(arrEven);
+  return result;
+}
+let b = "njkf34oi 324385ehfwe736r743gtjfkn6s3i8d";
+console.log(removeRep(b));

@@ -14,7 +14,7 @@ var http = require("http");
 var server = http.createServer();
 
 //    服务器要干嘛？
-//    提供服务：对 数据的服务
+//    提供服务：对数据的服务
 //    发请求
 //    接收请求
 //    处理请求

@@ -10,7 +10,7 @@
  * .lastIndexOf(目标字符串[，搜索起始位置])  返回最后一个该字符串的索引值，没有则返回 -1
  * .replace(str1,newstr)  替换
  * .slice(beginSlice[,endSlice]) 提取字符串的一部分并返回新的字符串
- * .split(str[,number])  返回以 str 为分隔符切分的数组，切割后的数组元素个数
+ * .split(str[,number])  返回以 str 为分隔符切分的❗️数组，(切割后的数组元素个数)
  * .substr(start[,number])  截取字符串，start为开始索引值，number是截取字符数
  * .substring(start[,end])  截取字符串，start为开始索引值，end为结束索引值
  * .toLocaleLowerCase(str)  将字符串全部转换成小写

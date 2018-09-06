@@ -1,0 +1,15 @@
+body {
+  background-color: #f3f5f7;
+}
+header {
+  width: 1300px;
+  height: 100px;
+  background-color: pink;
+  margin: 0 auto;
+}
+.logo {
+  width: 195px;
+  height: 42px;
+  float: left;
+  background: url("../images/logo.png") no-repeat;
+}

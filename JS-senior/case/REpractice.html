@@ -87,6 +87,8 @@
         });
         function getLvl(pwd) {
             let lvl = 0;
+            //test方法的返回值是布尔值，通过该值可以匹配字符串中是否存在于正则表达式相匹配的结果，
+            //如果有匹配内容，返回ture，如果没有匹配内容返回false
             if (/\d+/.test(pwd)) {
                 lvl++;
             }

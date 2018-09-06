@@ -28,7 +28,12 @@ function Person(name, age) {
     );
   };
 }
-
+// 要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4
+// 个步骤：
+// (1) 创建一个新对象（分配空间）；
+// (2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；
+// (3) 执行构造函数中的代码（为这个新对象添加属性） ；
+// (4) 返回新对象。
 var per1 = new Person("tom", 18);
 per1.sayHi();
 console.log(per1 instanceof Person); //true  ❗️与17、18行代码比较自定义构造函数区别
@@ -45,7 +50,7 @@ obj.sayHi();
 
 //对象是无序属性与方法组成的集合，遍历对象要用 for—in 循环
 // ❗️注意：对象中确实有该属性时，用obj.name，或者obj["name"]
-//        若没有，要用obj[属性名] 如第58行
+//        若没有，要用obj[str] 如第64行
 var obj = new Object();
 obj.Name = "name";
 obj.Age = 18;

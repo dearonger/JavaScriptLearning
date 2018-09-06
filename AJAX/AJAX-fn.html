@@ -28,9 +28,9 @@
           let value = params[key]
           tempArr.push(key + '=' + value)
         }
-        // tempArr => [ 'key1=value1', 'key2=value2' ]
+        // tempArr ==> [ 'key1=value1', 'key2=value2' ]
         params = tempArr.join('&')
-        // params => 'key1=value1&key2=value2'
+        // params ==> 'key1=value1&key2=value2'
       }
 
       if (method === 'GET') {
