@@ -4,12 +4,235 @@ body {
 header {
   width: 1300px;
   height: 100px;
-  background-color: pink;
   margin: 0 auto;
+  padding-top: 30px;
+  /* background-color: pink; */
 }
 .logo {
   width: 195px;
   height: 42px;
   float: left;
+}
+.logo a {
+  display: block;
+  width: 195px;
+  height: 42px;
   background: url("../images/logo.png") no-repeat;
+  text-indent: -100px;
+  overflow: hidden;
+}
+nav {
+  float: left;
+  margin-left: 20px;
+}
+nav li {
+  float: left;
+  font-size: 18px;
+  margin-left: 25px;
+  line-height: 40px;
+  height: 40px;
+}
+nav li a {
+  display: block;
+  height: 40px;
+  padding: 0 10px;
+}
+nav li a:hover {
+  border-bottom: 2px solid #00a4ff;
+}
+.search {
+  float: left;
+  display: block;
+  width: 410px;
+  height: 40px;
+  margin-left: 160px;
+}
+.search input {
+  float: left;
+  padding: 16px 10px;
+  outline: none;
+  height: 40px;
+  line-height: 40px;
+  width: 361px;
+  border: 1px solid #00a4ff;
+}
+.search button {
+  float: left;
+  background-color: #00a4ff;
+  border: 0;
+  outline: none;
+  width: 49px;
+  height: 40px;
+  background-image: url("../images/fa-search.png");
+}
+.personal {
+  float: right;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 40px;
+}
+.personal dt,
+.personal dd {
+  float: left;
+}
+.personal s {
+  position: relative;
+  padding: 0 20px;
+  text-decoration: none;
+}
+.personal s::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 17px;
+  top: 0;
+  height: 6px;
+  width: 6px;
+  background-color: red;
+  border-radius: 50%;
+}
+.personal span img {
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: all 0.5s;
+}
+.personal span img:hover {
+  transform: rotate(360deg);
+}
+.banner {
+  height: 420px;
+  background-color: #1c036c;
+}
+.banner .inner {
+  height: 420px;
+  position: relative;
+}
+.subnav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 190px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+.subnav li {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 30px;
+}
+.subnav a {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+}
+.subnav a:hover {
+  color: #00b4ff;
+}
+.subnav span {
+  position: absolute;
+  right: 40px;
+}
+.cricle {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  width: 176px;
+  height: 20px;
+  /* css3 新属性 让物体左右移动 transform: translate(x,y); */
+  transform: translate(-50%); /* === margin-left: -88px; */
+}
+.cricle li {
+  float: left;
+  display: block;
+  margin: 0 5px;
+  width: 13px;
+  height: 13px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s;
+}
+.cricle li:hover {
+  width: 20px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.timebook {
+  width: 228px;
+  height: 300px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  background-color: #fff;
+  /* 垂直居中 */
+  transform: translateY(-50%);
+}
+.timebook dt {
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  background-color: #9bceea;
+  font-size: 20px;
+  text-align: center;
+}
+.timebook dd {
+  padding: 15px 20px 0;
+}
+.timebook li {
+  padding-top: 6px;
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+}
+.timebook li:last-child {
+  border: 0;
+}
+.timebook h5 {
+  font-size: 16px;
+  font-weight: normal;
+}
+.all {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #22b0ff;
+  color: #22b0ff;
+}
+.timebook a:hover {
+  background-color: #22b0ff;
+  color: #fff;
+}
+.recommend {
+  margin-top: 10px;
+  background-color: #fff;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
+  transition: all 0.4s;
+  border: 1px solid #ccc;
+}
+.recommend:hover {
+  border: none;
+  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.4);
+}
+.rec-l {
+  padding-left: 30px;
+}
+.rec-l strong {
+  color: #22b0ff;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.rec-l a {
+  margin: 0 15px;
+  font-size: 14px;
+}
+.recommend em {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
 }
