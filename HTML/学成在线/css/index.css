@@ -216,7 +216,7 @@ nav li a:hover {
 }
 .recommend:hover {
   border: none;
-  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
 }
 .rec-l {
   padding-left: 30px;

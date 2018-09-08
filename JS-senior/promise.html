@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 300px;
+            height: 200px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="start()">加载图片</button>
+    <div id="pic">
+
+    </div>
+    <script>
+        //preloadImage 是一个Promise 实例
+        var preloadImage = function (path) {
+            return new Promise(function (resolve, reject) {
+                var image = new Image();
+                image.onload = resolve;
+                image.onerror = reject;
+                image.src = path;
+            });
+        };
+        function start() {
+            preloadImage('../images/1.jpg')
+                .then(function (e) { document.getElementById("pic").append(e.target) })
+                .then(function () { console.log('加载成功') })
+        }
+    </script>
+</body>
+
+</html>

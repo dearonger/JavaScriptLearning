@@ -133,63 +133,96 @@
 // });
 // console.log(arr5);
 //改变原型指向----继承
-function Person(name, age, sex) {
-  this.name = name;
-  this.age = age;
-  this.sex = sex;
-}
-Person.prototype.sayHi = function() {
-  console.log("阿涅哈斯呦");
-};
+// function Person(name, age, sex) {
+//   this.name = name;
+//   this.age = age;
+//   this.sex = sex;
+// }
+// Person.prototype.sayHi = function() {
+//   console.log("阿涅哈斯呦");
+// };
 
-function Student(name, age, sex, score) {
-  //借用构造函数:属性值重复的问题
-  Person.call(this, name, age, sex);
-  this.score = score;
-}
-//改变原型指向----继承
-Student.prototype = new Person(); //不传值
-Student.prototype.eat = function() {
-  console.log("吃东西");
-};
-var stu = new Student("小黑", 20, "男", "100分");
-console.log(stu.name, stu.age, stu.sex, stu.score);
-stu.sayHi();
-stu.eat();
-var stu2 = new Student("小黑黑", 200, "男人", "1010分");
-console.log(stu2.name, stu2.age, stu2.sex, stu2.score);
-stu2.sayHi();
-stu2.eat();
+// function Student(name, age, sex, score) {
+//   //借用构造函数:属性值重复的问题
+//   Person.call(this, name, age, sex);
+//   this.score = score;
+// }
+// //改变原型指向----继承
+// Student.prototype = new Person(); //不传值
+// Student.prototype.eat = function() {
+//   console.log("吃东西");
+// };
+// var stu = new Student("小黑", 20, "男", "100分");
+// console.log(stu.name, stu.age, stu.sex, stu.score);
+// stu.sayHi();
+// stu.eat();
+// var stu2 = new Student("小黑黑", 200, "男人", "1010分");
+// console.log(stu2.name, stu2.age, stu2.sex, stu2.score);
+// stu2.sayHi();
+// stu2.eat();
 
-let n = read_line();
-let r = "";
-let arr = new Array();
-let item = new Array();
-let sumF = 0;
-let sumT = 0;
-let maxF = 0;
-let maxT = 0;
-for (let i = 0; i < n; i++) {
-  r = read_line();
-  arr[i] = r.split(" ");
-  for (let j = 0; j < 4; j++) {
-    arr[i][j] = parseInt(arr[i][j]);
-  }
+// ❗️❗️let n = read_line();
+// let r = "";
+// let arr = new Array();
+// let item = new Array();
+// let sumF = 0;
+// let sumT = 0;
+// let maxF = 0;
+// let maxT = 0;
+// for (let i = 0; i < n; i++) {
+//   r = read_line();
+//   arr[i] = r.split(" ");
+//   for (let j = 0; j < 4; j++) {
+//     arr[i][j] = parseInt(arr[i][j]);
+//   }
+// }
+// //遍历，找最高分值的题目，记录分值与做题时间，在剩余时间内，找最高分值的题目(递归)
+// function getF(arr, time) {
+//   if (time <= 10) {
+//     return sumF;
+//   }
+//   for (let m = 0; m < n; m++) {
+//     for (let k = 1; k < 4; k = k + 2) {
+//       if (arr[m][k] > maxF && arr[m][k - 1] < time) {
+//         maxF = arr[m][k];
+//         maxT = arr[m][k - 1];
+//       }
+//     }
+//   }
+
+//   return sumF + getF(arr, 120 - maxT);
+// }
+// getF(arr, 120);
+var items = [1, 2, 3, 4, 5, 6];
+var results = [];
+var running = 0;
+var limit = 2;
+
+function async(arg, callback) {
+  console.log("参数为 " + arg + " , 1秒后返回结果");
+  setTimeout(function() {
+    callback(arg * 2);
+  }, 1000);
 }
-//遍历，找最高分值的题目，记录分值与做题时间，在剩余时间内，找最高分值的题目(递归)
-function getF(arr, time) {
-  if (time <= 10) {
-    return sumF;
-  }
-  for (let m = 0; m < n; m++) {
-    for (let k = 1; k < 4; k = k + 2) {
-      if (arr[m][k] > maxF && arr[m][k - 1] < time) {
-        maxF = arr[m][k];
-        maxT = arr[m][k - 1];
+
+function final(value) {
+  console.log("完成: ", value);
+}
+
+function launcher() {
+  while (running < limit && items.length > 0) {
+    var item = items.shift();
+    async(item, function(result) {
+      results.push(result);
+      running--;
+      if (items.length > 0) {
+        launcher();
+      } else if (running == 0) {
+        final(results[results.length - 1]);
       }
-    }
+    });
+    running++;
   }
-
-  return sumF + getF(arr, 120 - maxT);
 }
-getF(arr, 120);
+
+launcher();
