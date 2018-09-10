@@ -33,7 +33,7 @@
     </div>
     <script>
         let arr = [2, 4, 45, 7, 2, 4, 8, 37, 10, 2, 5];
-        function startSort(arr) {
+        async function startSort(arr) {
             let content = document.getElementsByClassName("content")[0];
             //var fragment = document.createDocumentFragment(); 
             // 创建文档片段，尽量减少重绘和重排
@@ -50,18 +50,30 @@
                 for (let j = 0; j < arr.length - i; j++) {
                     if (arr[j] > arr[j + 1]) {
                         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                        setTimeout(function () {
-                            let node1 = document.getElementById(j);
-                            let node2 = document.getElementById(j + 1);
-                            node1.style.border = "2px solid red";
-                            node2.style.border = "2px solid red";
-                            [node1.style.left, node2.style.left] = [node2.style.left, node1.style.left];
-                            [node1.id, node2.id] = [node2.id, node1.id];
-                            setTimeout(function () {
-                                node2.style.border = "2px solid black";
-                            }, 1000);
-                        }, time * 1000);//❓因为异步的关系，node2的颜色变不回来
-                        time++;
+                        let node1 = document.getElementById(j);
+                        let node2 = document.getElementById(j + 1);
+                        function f1() {
+                            return new Promise((resolve) => {
+                                setTimeout(function () {
+                                    node1.style.border = "2px solid red";
+                                    node2.style.border = "2px solid red";
+                                    [node1.style.left, node2.style.left] = [node2.style.left, node1.style.left];
+                                    [node1.id, node2.id] = [node2.id, node1.id];
+                                    resolve();
+                                }, 1000);
+                            })
+                        }
+                        function f2() {
+                            return new Promise((resolve) => {
+                                setTimeout(function () {
+                                    node2.style.border = "2px solid black";
+                                    resolve();
+                                }, 1000);
+                            })
+                        }
+                        await f1();
+                        await f2();
+                        node1.style.border = "2px solid black";
                     }
                 }
             }

@@ -50,18 +50,28 @@
                 for (let j = 0; j < arr.length - i; j++) {
                     if (arr[j] > arr[j + 1]) {
                         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                        setTimeout(function () {
-                            let node1 = document.getElementById(j);
-                            let node2 = document.getElementById(j + 1);
-                            node1.style.border = "2px solid red";
-                            node2.style.border = "2px solid red";
-                            [node1.style.left, node2.style.left] = [node2.style.left, node1.style.left];
-                            [node1.id, node2.id] = [node2.id, node1.id];
+                        let f1 = function () {
+                            return new Promise(function (resolve, reject) {
+                                setTimeout(function () {
+                                    let node1 = document.getElementById(j);
+                                    let node2 = document.getElementById(j + 1);
+                                    node1.style.border = "2px solid red";
+                                    node2.style.border = "2px solid red";
+                                    [node1.style.left, node2.style.left] = [node2.style.left, node1.style.left];
+                                    [node1.id, node2.id] = [node2.id, node1.id];
+                                    setTimeout(function () {
+                                        document.getElementById(j).style.border = "2px solid black";
+                                    }, 1000);
+                                    resolve();
+                                }, time * 1000);
+                                time++;
+                            });
+                        }
+                        f1().then(function () {
                             setTimeout(function () {
-                                node2.style.border = "2px solid black";
+                                document.getElementById(j + 1).style.border = "2px solid black";
                             }, 1000);
-                        }, time * 1000);//❓因为异步的关系，node2的颜色变不回来
-                        time++;
+                        });
                     }
                 }
             }

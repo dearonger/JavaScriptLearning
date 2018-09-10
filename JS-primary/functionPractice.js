@@ -191,15 +191,15 @@ let a = "20180803dshjfjjr490482dsfdbnd7835";
 //取出数字，去重，奇数偶数分开。
 function removeRep(a) {
   //取数字
-  let num = a.match(/\d+/g);
+  let num = a.match(/\d+/g); // num = ['20180803','490482','7835']
   let str = "";
   for (let i = 0; i < num.length; i++) {
-    str += num[i];
+    str += num[i]; //str = ['201808034904827835']
   }
   //转数组
   let arr = [];
-  arr = Array.from(str);
-  console.log(arr);
+  //将 str 变为数组
+  arr = Array.from(str); //arr = ['2','0','1','8','0','8','0','3','4','9','0','4','8','2','7','8','3','5'];
   let temp = [];
   //去重
   arr.forEach(function(elem) {
@@ -207,6 +207,11 @@ function removeRep(a) {
       temp.push(elem);
     }
   });
+
+  //去重
+  // let s = new Set();
+  // arr.forEach(elem=>s.add(elem));
+
   let arrOdd = [];
   let arrEven = [];
   temp.forEach(function(elem) {
