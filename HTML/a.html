@@ -59,9 +59,6 @@
                                     node2.style.border = "2px solid red";
                                     [node1.style.left, node2.style.left] = [node2.style.left, node1.style.left];
                                     [node1.id, node2.id] = [node2.id, node1.id];
-                                    setTimeout(function () {
-                                        document.getElementById(j).style.border = "2px solid black";
-                                    }, 1000);
                                     resolve();
                                 }, time * 1000);
                                 time++;
@@ -69,8 +66,9 @@
                         }
                         f1().then(function () {
                             setTimeout(function () {
-                                document.getElementById(j + 1).style.border = "2px solid black";
+                                document.getElementById(j).style.border = "2px solid black"; //元素找不对
                             }, 1000);
+                            document.getElementById(arr.length - i - 1).style.border = "2px solid black";
                         });
                     }
                 }

@@ -39,18 +39,19 @@ function timeout(ms) {
     setTimeout(resolve, ms, "done");
   });
 }
-timeout(100);
-
-//p1和p2都是Promise 实例，它们的then方法绑定两个回调函数：
-//成功时的回调函数console.log，失败时的回调函数console.error（可以省略）但 Promise 对象的报错具有传递性。
-var p1 = new Promise(function(resolve, reject) {
-  resolve("成功");
+timeout(100).then(value => {
+  console.log(value);
 });
-p1.then(console.log, console.error);
-// "成功"
 
-var p2 = new Promise(function(resolve, reject) {
-  reject(new Error("失败"));
+//Promise 新建后就会立即执行。
+let promise = new Promise(function(resolve, reject) {
+  console.log("Promise");
+  resolve();
 });
-p2.then(console.log, console.error);
-// Error: 失败
+promise.then(function() {
+  console.log("resolved.");
+});
+console.log("Hi!");
+// Promise
+// Hi!
+// resolved

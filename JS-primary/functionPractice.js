@@ -211,6 +211,7 @@ function removeRep(a) {
   //去重
   // let s = new Set();
   // arr.forEach(elem=>s.add(elem));
+  //Array.from方法可以将 Set 结构转为数组。
 
   let arrOdd = [];
   let arrEven = [];
