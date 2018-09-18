@@ -193,36 +193,210 @@
 //   return sumF + getF(arr, 120 - maxT);
 // }
 // getF(arr, 120);
-var items = [1, 2, 3, 4, 5, 6];
-var results = [];
-var running = 0;
-var limit = 2;
+// var items = [1, 2, 3, 4, 5, 6];
+// var results = [];
+// var running = 0;
+// var limit = 2;
 
-function async(arg, callback) {
-  console.log("参数为 " + arg + " , 1秒后返回结果");
-  setTimeout(function() {
-    callback(arg * 2);
-  }, 1000);
+// function async(arg, callback) {
+//   console.log("参数为 " + arg + " , 1秒后返回结果");
+//   setTimeout(function() {
+//     callback(arg * 2);
+//   }, 1000);
+// }
+
+// function final(value) {
+//   console.log("完成: ", value);
+// }
+
+// function launcher() {
+//   while (running < limit && items.length > 0) {
+//     var item = items.shift();
+//     async(item, function(result) {
+//       results.push(result);
+//       running--;
+//       if (items.length > 0) {
+//         launcher();
+//       } else if (running == 0) {
+//         final(results[results.length - 1]);
+//       }
+//     });
+//     running++;
+//   }
+// }
+
+// launcher();
+//❗️js数组去重十一种方式
+
+//一、利用ES6中的Set 无法去掉“{}”空对象
+function removeRept1(arr) {
+  return Array.from(new Set(arr));
 }
 
-function final(value) {
-  console.log("完成: ", value);
-}
-
-function launcher() {
-  while (running < limit && items.length > 0) {
-    var item = items.shift();
-    async(item, function(result) {
-      results.push(result);
-      running--;
-      if (items.length > 0) {
-        launcher();
-      } else if (running == 0) {
-        final(results[results.length - 1]);
+//二、利用双层for循环，splice去重
+function removeRept2(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[i] == arr[j]) {
+        arr.splice(j, 1);
+        j--;
       }
-    });
-    running++;
+    }
   }
+  return arr;
 }
 
-launcher();
+//三、利用indexOf去重
+function removeRept3(arr) {
+  if (!Array.isArray(arr)) {
+    console.log("type error!");
+    return;
+  }
+  let array = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (array.indexOf(arr[i]) !== -1) {
+      array.push(arr[i]);
+    }
+  }
+  return array;
+}
+
+//四、利用sort去重
+function removeRept4(arr) {
+  if (!Array.isArray(arr)) {
+    console.log("type error!");
+    return;
+  }
+  arr = arr.sort();
+  let array = [arr[0]];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] !== arr[i - 1]) {
+      array.push(arr[i]);
+    }
+  }
+  return array;
+}
+
+//五、利用对象的属性不能相同的特点进行去重
+function removeRept5(arr) {
+  if (!Array.isArray(arr)) {
+    console.log("type error!");
+    return;
+  }
+  let obj = {};
+  let array = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!obj[arr[i]]) {
+      array.push(arr[i]);
+      obj[arr[i]] = 1;
+    } else {
+      obj[arr[i]]++; //侧面反映了出现次数
+    }
+  }
+  return array;
+}
+
+//六、利用includes检测数组是否有某个值
+function removeRept6(arr) {
+  if (!Array.isArray(arr)) {
+    console.log("type error!");
+    return;
+  }
+  let array = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!array.includes(arr[i])) {
+      array.push(arr[i]);
+    }
+  }
+  return array;
+}
+
+//七、利用hasOwnProperty
+//❗️o(n)时间复杂度 实现去重
+//利用object的键是唯一的这一属性实现 hasOwnProperty
+function removeRept7_1(array) {
+  let obj = {};
+  let arr = [];
+  for (let i = 0; i < array.length; i++) {
+    //.hasOwnProperty()用来判断对象中是否有某个属性，把内容作为键值存入对象
+    if (!obj.hasOwnProperty(array[i])) {
+      obj[array[i]] = 1;
+      arr.push(array[i]);
+    }
+  }
+  return arr;
+}
+//或者
+function removeRept7_2(arr) {
+  var obj = {};
+  return arr.filter(item => {
+    return obj.hasOwnProperty(typeof item + item)
+      ? false
+      : (obj[typeof item + item] = true);
+  });
+}
+
+//八、利用filter,当前元素，在原始数组中的第一个索引==当前索引值
+function removeRept8(arr) {
+  return arr.filter(item => {
+    return arr.indexOf(item) === index;
+  });
+}
+
+//九、利用Map数据结构去重,Map中不会出现相同的key值
+function removeRept9(arr) {
+  let map = new Map();
+  let array = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (map.has(arr[i])) {
+      // 如果有该key值
+      map.set(arr[i], true);
+    } else {
+      map.set(arr[i], false);
+      array.push(arr[i]);
+    }
+  }
+  return array;
+}
+
+//十、利用[...new Set(arr)] 与第一种类似
+function removeRept10(arr) {
+  return [...new Set(arr)];
+}
+
+//十一、利用reduce ❓❓❓
+Array.prototype.removeRept11 = function() {
+  let sortArr = this.sort();
+  let array = [];
+  sortArr.reduce((s1, s2) => {
+    if (s1 !== s2) {
+      array.push(s1);
+    }
+    return s2;
+  });
+  array.push(sortArr[sortArr.length - 1]);
+  return array;
+};
+
+console.log(
+  removeRept7_1([
+    1,
+    2,
+    [],
+    { a: 1, b: 2 },
+    {},
+    1,
+    34,
+    3,
+    [1, 2, 3],
+    {},
+    { a: 1, b: 2 },
+    6,
+    84,
+    5,
+    [3, 2, 1],
+    6,
+    2,
+    [1, 2, 3]
+  ])
+);
